@@ -6,6 +6,9 @@ plugins {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {
+        url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    }
 }
 
 val quarkusPlatformGroupId: String by project
@@ -15,6 +18,10 @@ val quarkusPlatformVersion: String by project
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-arc")
+
+    implementation("social.bigbone:bigbone:2.0.0-SNAPSHOT")
+    implementation("social.bigbone:bigbone-rx:2.0.0-SNAPSHOT")
+
     testImplementation("io.quarkus:quarkus-junit5")
 }
 
