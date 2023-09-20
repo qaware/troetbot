@@ -16,28 +16,25 @@ val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
 
 dependencies {
-    implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
+    implementation(platform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-resteasy-reactive")
-    implementation("io.quarkus:quarkus-rest-client-reactive")
 
-    implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
+    implementation("com.squareup.okhttp3:okhttp") {
+        version {
+            strictly("4.11.0")
+        }
+    }
+    implementation("com.squareup.okhttp3:okhttp-urlconnection") {
+        version {
+            strictly("4.11.0")
+        }
+    }
 
     implementation("social.bigbone:bigbone:2.0.0-SNAPSHOT")
     implementation("social.bigbone:bigbone-rx:2.0.0-SNAPSHOT")
 
     testImplementation("io.quarkus:quarkus-junit5")
-}
-
-configurations.all {
-    resolutionStrategy {
-        eachDependency {
-            when (requested.module.toString()) {
-                "com.squareup.okhttp3:okhttp" -> useVersion("4.11.0")
-                "com.squareup.okhttp3:okhttp-urlconnection" -> useVersion("4.11.0")
-            }
-        }
-    }
 }
 
 group = "de.qaware.cloudcomputing"
