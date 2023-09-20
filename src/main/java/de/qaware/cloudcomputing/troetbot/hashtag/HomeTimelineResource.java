@@ -9,22 +9,21 @@ import jakarta.ws.rs.core.MediaType;
 import social.bigbone.MastodonClient;
 import social.bigbone.MastodonRequest;
 import social.bigbone.api.Pageable;
-import social.bigbone.api.Range;
 import social.bigbone.api.entity.Status;
 import social.bigbone.api.exception.BigBoneRequestException;
 
 @Path("/")
 @ApplicationScoped
 @Produces(MediaType.TEXT_PLAIN)
-public class HashtagResource {
+public class HomeTimelineResource {
 
     @Inject
     MastodonClient mastodonClient;
 
     @GET
     @Produces("text/html")
-    @Path("/hashtags")
-    public String getPopularHashtags() {
+    @Path("/home")
+    public String getHomeTimeline() {
 
         try {
             MastodonRequest<Pageable<Status>> request = mastodonClient.timelines().getHomeTimeline();
