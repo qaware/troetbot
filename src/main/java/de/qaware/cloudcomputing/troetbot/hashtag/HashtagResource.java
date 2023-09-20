@@ -27,7 +27,7 @@ public class HashtagResource {
     public String getPopularHashtags() {
 
         try {
-            MastodonRequest<Pageable<Status>> request = mastodonClient.timelines().getHomeTimeline(new Range("111097878460919195"));
+            MastodonRequest<Pageable<Status>> request = mastodonClient.timelines().getHomeTimeline();
             Pageable<Status> response = request.execute();
 
             StringBuilder stringBuilder = new StringBuilder();
