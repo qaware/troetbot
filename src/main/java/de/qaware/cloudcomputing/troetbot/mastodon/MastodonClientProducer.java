@@ -11,7 +11,7 @@ public class MastodonClientProducer {
     @ConfigProperty(name = "mastodon.instance.hostname")
     String instanceHostname;
 
-    @ConfigProperty(name = "mastodon.accessToken")
+    @ConfigProperty(name = "mastodon.access.token")
     String accessToken;
 
     @Produces
