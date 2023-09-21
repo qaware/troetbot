@@ -6,38 +6,36 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import social.bigbone.MastodonClient;
 import social.bigbone.MastodonRequest;
 import social.bigbone.api.Pageable;
 import social.bigbone.api.entity.Status;
 import social.bigbone.api.exception.BigBoneRequestException;
 
+import java.util.List;
+
 @Path("/")
 @ApplicationScoped
-@Produces(MediaType.TEXT_PLAIN)
+@Produces(MediaType.APPLICATION_JSON)
 public class HomeTimelineResource {
 
     @Inject
     MastodonClient mastodonClient;
 
     @GET
-    @Produces("text/html")
     @Path("/home")
-    public String getHomeTimeline() {
-
+    @Operation(summary = "Retrieves the latest toots from the home timeline.")
+    @APIResponse(
+            description = "Returns a list of status objects."
+    )
+    public List<Status> getHomeTimeline() {
         try {
             MastodonRequest<Pageable<Status>> request = mastodonClient.timelines().getHomeTimeline();
             Pageable<Status> response = request.execute();
 
-            StringBuilder stringBuilder = new StringBuilder();
-            for (Status status : response.getPart()) {
-                stringBuilder.append("<div style=\"border: 1px solid; margin-bottom: 1em;\">");
-                stringBuilder.append(status.getAccount().getDisplayName());
-                stringBuilder.append("<hr />");
-                stringBuilder.append(status.getContent());
-                stringBuilder.append("</div>");
-            }
-            return stringBuilder.toString();
+            return response.getPart();
         } catch (BigBoneRequestException e) {
             throw new RuntimeException(e);
         }
