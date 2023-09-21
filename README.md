@@ -1,6 +1,10 @@
-# troetbot
+# Trötbot
 
-This bot retrieves Toots from [Mastodon](https://joinmastodon.org).
+This bot retrieves toots from [Mastodon](https://joinmastodon.org).
+
+## What does "Tröt" mean anyway?
+
+"Tröt" is the German word for toot, the noise a mastodon or elephant makes while exhaling through their [proboscis](https://en.wikipedia.org/wiki/Proboscis). 
 
 ## Setup
 
