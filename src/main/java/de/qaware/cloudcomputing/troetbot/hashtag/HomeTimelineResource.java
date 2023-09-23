@@ -1,5 +1,6 @@
 package de.qaware.cloudcomputing.troetbot.hashtag;
 
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -26,6 +27,7 @@ public class HomeTimelineResource {
 
     @GET
     @Path("/home")
+    @WithSpan
     @Operation(summary = "Retrieves the latest toots from the home timeline.")
     @APIResponse(
             description = "Returns a list of status objects."
