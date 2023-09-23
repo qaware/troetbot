@@ -18,6 +18,7 @@ val quarkusPlatformVersion: String by project
 dependencies {
     implementation(platform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-arc")
+    implementation("io.quarkus:quarkus-logging-json")
     implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
     implementation("io.quarkus:quarkus-opentelemetry")
     implementation("io.quarkus:quarkus-resteasy-reactive")
