@@ -8,6 +8,9 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import social.bigbone.MastodonClient;
 import social.bigbone.MastodonRequest;
@@ -30,7 +33,9 @@ public class HomeTimelineResource {
     @WithSpan
     @Operation(summary = "Retrieves the latest toots from the home timeline.")
     @APIResponse(
-            description = "Returns a list of status objects."
+            description = "Returns a list of status objects.",
+            responseCode = "200",
+            content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(type = SchemaType.ARRAY, implementation = Status.class))
     )
     public List<Status> getHomeTimeline() {
         try {
