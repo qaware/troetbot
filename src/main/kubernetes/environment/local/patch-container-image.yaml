@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: troetbot
+  name: troetbot
+spec:
+  template:
+    metadata:
+      labels:
+        app: troetbot
+    spec:
+      containers:
+        - name: troetbot
+          image: troetbot
