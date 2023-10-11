@@ -1,0 +1,16 @@
+resources:
+  - ../../base
+
+patchesStrategicMerge:
+  - patch-container-image.yaml
+
+configMapGenerator:
+  - name: troetbot-config
+    behavior: create
+    literals:
+      - MASTODON_INSTANCE_HOSTNAME="<your_mastodon_instance>"
+
+secretGenerator:
+  - name: troetbot-secrets
+    literals:
+      - MASTODON_ACCESS_TOKEN="<your_access_token>"

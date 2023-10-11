@@ -1,0 +1,7 @@
+commonLabels:
+  app: troetbot
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - pod-disruption-budget.yaml
